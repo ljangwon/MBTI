@@ -14,7 +14,7 @@ global index
 
 
 # Add a title       
-win.title("MBTI 검사")
+win.title("MBTI 검사1")
 
 tabControl = ttk.Notebook(win)    # Create Tab Control
 
