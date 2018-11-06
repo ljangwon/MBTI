@@ -12,6 +12,7 @@ win = tk.Tk()
 
 global index
 
+
 # Add a title       
 win.title("MBTI °Ë»ç")
 
