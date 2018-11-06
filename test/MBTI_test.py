@@ -5,6 +5,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox as msg 
+from tkinter import scrolledtext 
 
 # Create instance
 win = tk.Tk()
@@ -29,7 +30,7 @@ tab4 = ttk.Frame(tabControl)
 tabControl.add(tab4, text='Page 4')
 tab5 = ttk.Frame(tabControl)
 tabControl.add(tab5, text='결과')
-
+tabControl.pack(expand=1, fill="both")  # Pack to make visible
 
 # LabelFrame using tab0 as the parent
 page0 = ttk.LabelFrame(tab0, text=' 인적사항 ')
@@ -340,7 +341,11 @@ def _msgBox():
 page2 = ttk.LabelFrame(tab2, text=' Page 2 ')
 page2.grid(column=0, row=0, padx=8, pady=4)
 
-tabControl.pack(expand=1, fill="both")  # Pack to make visible
+# Using a scrolled Text control    
+scrol_w  = 80
+scrol_h  = 40
+scr = scrolledtext.ScrolledText(page5, width=scrol_w, height=scrol_h, wrap=tk.WORD)
+scr.grid(column=0, row=5, sticky='WE', columnspan=3)   
 
 #======================
 # Start GUI
