@@ -12,7 +12,6 @@ win = tk.Tk()
 
 global index
 
-
 # Add a title       
 win.title("MBTI 검사1")
 
@@ -35,22 +34,22 @@ tabControl.pack(expand=1, fill="both")  # Pack to make visible
 
 # LabelFrame using tab0 as the parent
 page0 = ttk.LabelFrame(tab0, text=' 인적사항 ')
-page0.grid(column=0, row=0, padx=8, pady=4)
+page0.grid(column=0, row=0, padx=8, pady=2)
 
 page1 = ttk.LabelFrame(tab1, text=' 검사 Page1 ')
-page1.grid(column=0, row=0, padx=8, pady=4)
+page1.grid(column=0, row=0, padx=8, pady=2)
 
 page2 = ttk.LabelFrame(tab2, text=' 검사 Page2 ')
-page2.grid(column=0, row=0, padx=8, pady=4)
+page2.grid(column=0, row=0, padx=8, pady=2)
 
 page3 = ttk.LabelFrame(tab3, text=' 검사 Page3 ')
-page3.grid(column=0, row=0, padx=8, pady=4)
+page3.grid(column=0, row=0, padx=8, pady=2)
 
 page4 = ttk.LabelFrame(tab4, text=' 검사 Page4 ')
-page4.grid(column=0, row=0, padx=8, pady=4)
+page4.grid(column=0, row=0, padx=8, pady=2)
 
 page5 = ttk.LabelFrame(tab5, text=' 검사 결과 ')
-page5.grid(column=0, row=0, padx=8, pady=4)
+page5.grid(column=0, row=0, padx=8, pady=2)
 
 
 # Modify adding a Label using mighty as the parent instead of win
@@ -114,6 +113,7 @@ for i in range(Qnum):
     Qa.append( '' )    
 for i in range(Qnum):
     Qb.append( '' )    
+
 
 # Q1 질문내용
 Qa[0] = ' 질문1a 나는 행동에 집착하고 활동과 행동을 지향한다. '
@@ -325,29 +325,57 @@ def radioCall():
     if done == False:
         print( '계속 질문에 답 하세요.')
     else :
-        msg.showinfo( '완료', '모두 답하셨습니다. 다음 페이지로 넘어가세요.')          
-    
+        msg.showinfo( '완료', '모두 답하셨습니다. 다음 페이지로 넘어가세요.')
+        showResult()
+
 for i in range(Qnum):
     radioBtnA.append( tk.Radiobutton(pageLF[i], text= Qa[i], variable=radioVar[i], value=(i+1)*10+1, command=radioCall ) )
     radioBtnA[i].grid(column=0, row=0, sticky=tk.W)
     radioBtnB.append( tk.Radiobutton(pageLF[i], text= Qb[i], variable=radioVar[i], value=(i+1)*10+2, command=radioCall ) )
     radioBtnB[i].grid(column=0, row=1, sticky=tk.W)
 
-def _msgBox():
-    msg.showinfo(' 모두 선택해야 됩니다. 다시 하세요. ') 
-    
-# Tab Control 2 refactoring  ---------------------------------------------------------
-
-# We are creating a container frame to hold all other widgets -- Tab2
-page2 = ttk.LabelFrame(tab2, text=' Page 2 ')
-page2.grid(column=0, row=0, padx=8, pady=4)
-
+       
 # Using a scrolled Text control    
 scrol_w  = 80
 scrol_h  = 40
+
 scr = scrolledtext.ScrolledText(page5, width=scrol_w, height=scrol_h, wrap=tk.WORD)
 scr.grid(column=0, row=5, sticky='WE', columnspan=3)   
 
+R1a_score = 0
+R2a_score = 0
+R3a_score = 0
+R4a_score = 0
+
+R1b_score = 0
+R2b_score = 0
+R3b_score = 0
+R4b_score = 0
+
+def showResult():
+    global R1a_score
+    global R2a_score
+    global R3a_score
+    global R4a_score
+    
+    global R1b_score
+    global R2b_score
+    global R3b_score
+    global R4b_score
+        
+    for i in range(Qnum):
+        r = radioVar[i].get()
+        if r == 11 or r == 21 or r == 32 or r == 41:
+            R1a_score += 1
+        elif r == 12 or r == 22 or r == 31 or r == 42:
+            R1b_score += 1
+            
+    global scr
+    scr.insert(tk.INSERT, 'R1 A : '+  str(R1a_score) + '   R1 B : ' + str(R1b_score) + '  ')
+    scr.insert(tk.INSERT, 'R2 A : '+  str(R2a_score) + '   R2 B : ' + str(R2b_score) + '  ')
+    scr.insert(tk.INSERT, 'R3 A : '+  str(R3a_score) + '   R3 B : ' + str(R3b_score) + '  ')
+    scr.insert(tk.INSERT, 'R4 A : '+  str(R4a_score) + '   R4 B : ' + str(R4b_score) + '                      ')
+    
 #======================
 # Start GUI
 #======================
