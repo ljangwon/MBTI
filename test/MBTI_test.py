@@ -114,7 +114,7 @@ for i in range(Qnum):
 for i in range(Qnum):
     Qb.append( '' )    
 
-
+# 〈출처 : 심혜숙, 임승환 역, 성격유형과 삶의 양식〉
 # Q1 질문내용
 Qa[0] = ' 질문1a 나는 행동에 집착하고 활동과 행동을 지향한다. '
 Qb[0] = ' 질문1a 나는 생각에 집착하고 사고와 생각들을 지향한다. '
@@ -308,6 +308,7 @@ Qa[47] = ' 질문48a 신속하게 결정하고 마감하려 한다. '
 Qb[47] = ' 질문48b 결정을 미루며 가능성을 찾는다. '   
 
 
+
 radioBtnA = []
 radioBtnB = []
 
@@ -315,17 +316,15 @@ def radioCall():
     done = True
     for i in range(Qnum):
         answer = radioVar[i].get()
-        print( i+1)
-        print( ':' ) 
-        print( answer )
         if answer == 0:            
             done = False            
             break
             
     if done == False:
-        print( '계속 질문에 답 하세요.')
+        win.title( name.get() + "님" + "계속 검사하세요. ")
     else :
-        msg.showinfo( '완료', '모두 답하셨습니다. 다음 페이지로 넘어가세요.')
+        win.title( name.get() + "님" + "검사가 완료되었습니다. ")
+        msg.showinfo( '완료', '모두 답하셨습니다. 결과 페이지에서 결과를 확인하세요.')
         showResult()
 
 for i in range(Qnum):
@@ -342,15 +341,7 @@ scrol_h  = 40
 scr = scrolledtext.ScrolledText(page5, width=scrol_w, height=scrol_h, wrap=tk.WORD)
 scr.grid(column=0, row=5, sticky='WE', columnspan=3)   
 
-R1a_score = 0
-R2a_score = 0
-R3a_score = 0
-R4a_score = 0
-
-R1b_score = 0
-R2b_score = 0
-R3b_score = 0
-R4b_score = 0
+MBTI_result = ''
 
 def showResult():
     global R1a_score
@@ -362,19 +353,96 @@ def showResult():
     global R2b_score
     global R3b_score
     global R4b_score
-        
+    
+    R1a_score = 0
+    R2a_score = 0
+    R3a_score = 0
+    R4a_score = 0
+    
+    R1b_score = 0
+    R2b_score = 0
+    R3b_score = 0
+    R4b_score = 0
+    
     for i in range(Qnum):
         r = radioVar[i].get()
-        if r == 11 or r == 21 or r == 32 or r == 41:
+        if r==11 or  r==52 or r==92 or r==132 or r==172 or r==211 or r==252 or r==291 or r==331 or r==372 or r==412 or r==451:
             R1a_score += 1
-        elif r == 12 or r == 22 or r == 31 or r == 42:
+        elif r==12 or  r==51 or r==91 or r==131 or r==171 or r==212 or r==251 or r==292 or r==332 or r==371 or r==411 or r==452:
             R1b_score += 1
             
+        elif r==22 or  r==61 or r==102 or r==142 or r==182 or r==222 or r==261 or r==302 or r==341 or r==382 or r==421 or r==461:
+            R2a_score += 1
+        elif r==21 or  r==62 or r==101 or r==141 or r==181 or r==221 or r==262 or r==301 or r==342 or r==381 or r==422 or r==462:
+            R2b_score += 1
+
+        elif r==31 or  r==71 or r==111 or r==152 or r==192 or r==232 or r==271 or r==312 or r==352 or r==391 or r==431 or r==472:
+            R3a_score += 1
+        elif r==32 or r==72 or r==112 or r==151 or r==191 or r==231 or r==272 or r==311 or r==351 or r==392 or r==432 or r==471:
+            R3b_score += 1
+
+        elif r==42 or  r==82 or r==122 or r==162 or r==201 or r==241 or r==282 or r==321 or r==361 or r==402 or r==442 or r==481:
+            R4a_score += 1
+        elif r==41 or  r==81 or r==121 or r==161 or r==202 or r==242 or r==281 or r==322 or r==362 or r==401 or r==441 or r==482:
+            R4b_score += 1
+
+
+# Q1  : E,  I    Q2 :  S, N     Q3 :  T, F      Q4 : J, P  
+            
     global scr
-    scr.insert(tk.INSERT, 'R1 A : '+  str(R1a_score) + '   R1 B : ' + str(R1b_score) + '  ')
-    scr.insert(tk.INSERT, 'R2 A : '+  str(R2a_score) + '   R2 B : ' + str(R2b_score) + '  ')
-    scr.insert(tk.INSERT, 'R3 A : '+  str(R3a_score) + '   R3 B : ' + str(R3b_score) + '  ')
-    scr.insert(tk.INSERT, 'R4 A : '+  str(R4a_score) + '   R4 B : ' + str(R4b_score) + '                      ')
+    
+    text = 'R1 E(extroversion 외향적) : '+  str(R1a_score) + '   R1 I( introversion 내향적) : ' + str(R1b_score) + '  '
+    print (text)
+    scr.insert(tk.INSERT, text )
+    
+    text = 'R2 S(sensing 감각적) : '+  str(R2a_score) + '   R2 N(intuition 직관적) : ' + str(R2b_score) + '  '
+    print (text)
+    scr.insert(tk.INSERT, text )
+    
+    text = 'R3 T(thinking 이성적) : '+  str(R3a_score) + '   R3 F(feeling 감성적) : ' + str(R3b_score) + '  '
+    print (text)
+    scr.insert(tk.INSERT, text )
+    
+    text = 'R4 J(judging 판단지향적) : '+  str(R4a_score) + '   R4 P(perceiving 인식지향적) : ' + str(R4b_score) + '  '
+    print (text)
+    scr.insert(tk.INSERT, text )
+    
+    global MBTI_result 
+    
+    MBTI_result = ''
+    
+    if R1a_score > R1b_score :
+        MBTI_result += 'E'
+    elif R1a_score == R1b_score :
+        MBTI_result += 'E(I)'
+    else :
+        MBTI_result += 'I'
+        
+    if R2a_score > R2b_score :
+        MBTI_result += 'S'
+    elif R2a_score == R2b_score :
+        MBTI_result += 'S(N)'
+    else :
+        MBTI_result += 'N'
+
+    if R3a_score > R3b_score :
+        MBTI_result += 'T'
+    elif R3a_score == R3b_score :
+        MBTI_result += 'T(F)'        
+    else :
+        MBTI_result += 'F'
+        
+    if R4a_score > R4b_score :
+        MBTI_result += 'J'
+    elif R3a_score == R3b_score :
+        MBTI_result += 'J(P)' 
+    else :
+        MBTI_result += 'P'
+    
+    text = 'MBTI  result : '+  MBTI_result
+    scr.insert(tk.INSERT, text ) 
+    print (text)
+    
     
 #======================
 # Start GUI
