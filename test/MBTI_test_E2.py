@@ -111,7 +111,7 @@ Qa = []
 Qb = []
 for i in range(Qnum):
     Qa.append( '' )    
-for i in range(Qnum):
+for i in range(Qnum):  
     Qb.append( '' )    
 
 # 〈출처 : 심혜숙, 임승환 역, 성격유형과 삶의 양식〉

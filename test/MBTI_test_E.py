@@ -460,7 +460,7 @@ def showResult():
         MBTI_result += 'J(P)' 
     else :
         intention += R4b_score
-        MBTI_result += 'P'
+        MBTI_result += 'P'  
 
     
     p = int(intention / 44 *100)
