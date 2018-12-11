@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox as msg 
 from tkinter import scrolledtext 
-from turtle import done
+
 
 # Create instance
 win = tk.Tk()
@@ -37,16 +37,16 @@ tabControl.pack(expand=1, fill="both")  # Pack to make visible
 page0 = ttk.LabelFrame(tab0, text=' 인적사항 ')
 page0.grid(column=0, row=0, padx=8, pady=2)
 
-page1 = ttk.LabelFrame(tab1, text=' 검사 Page1 ')
+page1 = ttk.LabelFrame(tab1, text=' 검사 Page1 : 두 항목 중 본인 성격과 비슷한 것을 선택하세요.')
 page1.grid(column=0, row=0, padx=8, pady=2)
 
-page2 = ttk.LabelFrame(tab2, text=' 검사 Page2 ')
+page2 = ttk.LabelFrame(tab2, text=' 검사 Page2 : 두 항목 중 본인 성격과 비슷한 것을 선택하세요.')
 page2.grid(column=0, row=0, padx=8, pady=2)
 
-page3 = ttk.LabelFrame(tab3, text=' 검사 Page3 ')
+page3 = ttk.LabelFrame(tab3, text=' 검사 Page3 : 두 항목 중 본인 성격과 비슷한 것을 선택하세요.')
 page3.grid(column=0, row=0, padx=8, pady=2)
 
-page4 = ttk.LabelFrame(tab4, text=' 검사 Page4 ')
+page4 = ttk.LabelFrame(tab4, text=' 검사 Page4 : 두 항목 중 본인 성격과 비슷한 것을 선택하세요.')
 page4.grid(column=0, row=0, padx=8, pady=2)
 
 page5 = ttk.LabelFrame(tab5, text=' 검사 결과 ')
@@ -64,9 +64,8 @@ name_entered.grid(column=0, row=1, sticky='W')               # align left/West
 
 # Modified Button Click Function
 def click_me(): 
-    start_label.configure(text='Hello ' + name.get() + ' ' + 
-                     grade_chosen.get() + ' Now MBTI Start ... 위에 Tab Page별로 진행하세요.')
-    win.title( "MBTI 검사  "+ name.get() + " 진행중 ")
+    start_label.configure(text='안녕하세요. ' + name.get() + '님 ' + ' 위에 있는  Page1 탭부터 진행하세요.')
+    win.title( "MBTI 검사 ver1.0 (feat. by Song,Kim) "+ name.get() + " 진행중 ")
     
 # Adding a Button
 start_button = ttk.Button(page0, text=' 검사시작! ', command=click_me)   
@@ -555,7 +554,7 @@ def showResult():
 
     points = int(incline / 36 *100)
     
-    text = type_name + ' (경향 :' + str(points) +'%)'
+    text = type_name + ' (정확도 :' + str(points) +'%)'
 
     scr1.insert(tk.INSERT, text)    
     scr2.insert(tk.INSERT, type_description)
