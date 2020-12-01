@@ -14,7 +14,7 @@ win = tk.Tk()
 global index
 
 # Add a title
-win.title("MBTI 검사 ver1.0 feat. by Song, Kim")
+win.title("MBTI 검사 ver1.1 For Elementary Students feat. by Song, Kim")
 
 tabControl = ttk.Notebook(win)    # Create Tab Control
 
